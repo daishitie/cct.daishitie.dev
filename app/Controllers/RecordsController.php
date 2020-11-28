@@ -46,7 +46,7 @@ class RecordsController extends Controller
 
     public function create($params = [])
     {
-        if ($this->userSession['role'] == 0) {
+        if ($this->userSession['role_id'] == 1) {
             $this->redirect('records');
         }
 

@@ -45,12 +45,10 @@ class Session
             $user = $user->getById(Session::get('user-id'));
 
             if ($user) {
-                $roleTitle = $user->role ? 'Administrator' : 'Regular User';
-
                 return [
                     'id' => Session::get('user-id'),
-                    'role' => $user->role,
-                    'role_title' => $roleTitle,
+                    'role_id' => $user->role_id,
+                    'role_title' => $user->role_title,
                     'firstname' => $user->firstname,
                     'lastname' => $user->lastname,
                     'username' => $user->username,

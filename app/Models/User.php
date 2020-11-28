@@ -37,8 +37,8 @@ class User
     public function register($firstname, $lastname, $username, $email, $password)
     {
         $this->db
-            ->query("INSERT INTO
-                users (firstname,lastname,username,email,password)
+            ->query("INSERT
+                INTO users (firstname,lastname,username,email,password)
                 VALUES (:firstname,:lastname,:username,:email,:password)
             ");
 
@@ -77,13 +77,16 @@ class User
         $this->db
             ->query("SELECT 
                     users.id,
-                    users.role,
+                    users.role_id,
                     users.firstname,
                     users.lastname,
                     users.username,
-                    users.email
+                    users.email,
+                    roles.title as role_title
                 FROM users
-                WHERE id = :id
+                LEFT JOIN roles
+                ON roles.id = users.role_id
+                WHERE users.id = :id
             ");
 
         $this->db->bind(':id', $id);
@@ -95,11 +98,15 @@ class User
         $this->db
             ->query("SELECT
                     users.id,
+                    users.role_id,
                     users.firstname,
                     users.lastname,
                     users.username,
-                    users.email
+                    users.email,
+                    roles.title as role_title
                 FROM users
+                LEFT JOIN roles
+                ON roles.id = users.role_id
             ");
 
         return $this->db->findAll() ?? false;

@@ -29,7 +29,7 @@
                                         <?php foreach ($data['accounts'] as $account) : ?>
                                             <tr>
                                                 <td><?= $account->id ?></td>
-                                                <td>$account->role</td>
+                                                <td><?= $account->role_title ?></td>
                                                 <td><?= $account->lastname ?>, <?= $account->firstname ?></td>
                                                 <td><?= $account->username ?></td>
                                                 <td><?= $account->email ?></td>

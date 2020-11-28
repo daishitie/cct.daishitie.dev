@@ -13,7 +13,7 @@
     </li>
 
     <?php if ($data['user_session']) : ?>
-        <?php if ($data['user_session']['role'] != 0) : ?>
+        <?php if ($data['user_session']['role_id'] != 1) : ?>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-clipboard"></i>
