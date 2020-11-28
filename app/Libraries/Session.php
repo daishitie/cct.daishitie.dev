@@ -44,13 +44,17 @@ class Session
         if (Session::exists()) {
             $user = $user->getById(Session::get('user-id'));
 
-            return [
-                'id' => Session::get('user-id'),
-                'firstname' => $user->firstname,
-                'lastname' => $user->lastname,
-                'username' => $user->username,
-                'email' => $user->email,
-            ];
+            if ($user) {
+                return [
+                    'id' => Session::get('user-id'),
+                    'firstname' => $user->firstname,
+                    'lastname' => $user->lastname,
+                    'username' => $user->username,
+                    'email' => $user->email,
+                ];
+            } else {
+                return header('Location: ' . config('app.url')  . '/logout');
+            }
         }
 
         return null;
