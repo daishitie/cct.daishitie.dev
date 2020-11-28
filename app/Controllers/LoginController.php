@@ -28,7 +28,7 @@ class LoginController extends Controller
         // Initialize default data
         $data = [
             'title' => 'Login',
-            'csrf-token' => Session::get('csrf-token'),
+            'csrf_token' => Session::get('csrf_token'),
             'username' => '',
             'password' => '',
             'haserror' => false,

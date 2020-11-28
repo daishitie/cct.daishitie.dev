@@ -20,14 +20,14 @@ class RegisterController extends Controller
             $this->redirect();
         }
 
-        if (count($params) >= 1 || time() >= Session::get('csrf-token-expiry')) {
+        if (count($params) >= 1 || time() >= Session::get('csrf_token-expiry')) {
             $this->redirect('register');
         }
 
         // Initialize default data.
         $data = [
             'title' => 'Register',
-            'token' => Session::get('csrf-token'),
+            'csrf_token' => Session::get('csrf_token'),
             'firstname' => '',
             'lastname' => '',
             'username' => '',

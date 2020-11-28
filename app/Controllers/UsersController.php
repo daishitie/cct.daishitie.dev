@@ -3,6 +3,7 @@
 namespace Covid\App\Controllers;
 
 use Covid\App\Libraries\Controller;
+use Covid\App\Libraries\Csrf;
 use Covid\App\Libraries\Session;
 use Covid\App\Models\User;
 
@@ -13,6 +14,7 @@ class UsersController extends Controller
 
     public function __construct()
     {
+        Csrf::make();
         $this->user = $this->model('User');
     }
 
@@ -20,7 +22,9 @@ class UsersController extends Controller
     {
         $this->view('users/index', [
             'title' => 'Accounts',
-            'user_session' => Session::getData($this->user)
+            'csrf_token' => Session::get('csrf_token'),
+            'user_session' => Session::getData($this->user),
+            'accounts' => $this->user->getAll()
         ]);
     }
 }

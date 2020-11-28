@@ -88,4 +88,19 @@ class User
         $this->db->bind(':id', $id);
         return $this->db->find() ?? false;
     }
+
+    public function getAll()
+    {
+        $this->db
+            ->query("SELECT
+                    users.id,
+                    users.firstname,
+                    users.lastname,
+                    users.username,
+                    users.email
+                FROM users
+            ");
+
+        return $this->db->findAll() ?? false;
+    }
 }

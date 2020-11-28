@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $this->view('home/index', [
             'title' => 'Dashboard',
-            'token' => Session::get('csrf-token'),
+            'token' => Session::get('csrf_token'),
             'user_session' => Session::getData($this->user),
         ]);
     }

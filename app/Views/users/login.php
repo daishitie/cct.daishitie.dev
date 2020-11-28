@@ -32,7 +32,7 @@
                                         <?php endif; ?>
                                     </div>
                                     <form class="user" action="<?= config('app.url'); ?>/login" method="post">
-                                        <input type="hidden" name="token" value="<?= $data['csrf-token']; ?>">
+                                        <input type="hidden" name="token" value="<?= $data['csrf_token']; ?>">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="username" placeholder="Username / Email Address" value="<?php if ($data['username']) : echo $data['username'];
                                                                                                                                                                     endif; ?>">

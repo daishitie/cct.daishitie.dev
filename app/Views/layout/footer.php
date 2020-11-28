@@ -96,6 +96,17 @@
         });
     </script>
 
+<?php elseif (strtolower($data['title']) == 'accounts') : ?>
+
+    <script>
+        $(document).ready(function() {
+            $('#accountsTable').DataTable({
+                "ordering": false,
+                "info": false
+            });
+        });
+    </script>
+
 <?php endif; ?>
 
 </html>
