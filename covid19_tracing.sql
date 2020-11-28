@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2020 at 05:03 AM
+-- Generation Time: Nov 29, 2020 at 05:26 AM
 -- Server version: 8.0.22-0ubuntu0.20.04.2
 -- PHP Version: 7.4.3
 
@@ -50,13 +50,13 @@ INSERT INTO `gender` (`id`, `gender`) VALUES
 
 CREATE TABLE `patients` (
   `id` int NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `status_id` int NOT NULL,
   `firstname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `middlename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `lastname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `age` int NOT NULL,
-  `gender` tinyint(1) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
+  `gender_id` int NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `mobile` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -69,14 +69,14 @@ CREATE TABLE `patients` (
 
 CREATE TABLE `roles` (
   `id` int NOT NULL,
-  `title` varchar(255) NOT NULL
+  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id`, `title`) VALUES
+INSERT INTO `roles` (`id`, `role`) VALUES
 (1, 'Regular User'),
 (2, 'Administrator');
 
@@ -88,14 +88,14 @@ INSERT INTO `roles` (`id`, `title`) VALUES
 
 CREATE TABLE `status` (
   `id` int NOT NULL,
-  `title` varchar(255) DEFAULT NULL
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `status`
 --
 
-INSERT INTO `status` (`id`, `title`) VALUES
+INSERT INTO `status` (`id`, `status`) VALUES
 (1, 'Negative'),
 (2, 'Positive'),
 (3, 'Recovered'),
@@ -166,7 +166,7 @@ ALTER TABLE `gender`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roles`

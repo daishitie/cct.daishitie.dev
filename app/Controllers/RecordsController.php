@@ -40,7 +40,8 @@ class RecordsController extends Controller
     {
         $this->view('records/index', [
             'title' => 'Records',
-            'user_session' => $this->userSession
+            'user_session' => $this->userSession,
+            'patients' => $this->record->index()
         ]);
     }
 

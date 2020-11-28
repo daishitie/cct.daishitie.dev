@@ -20,11 +20,32 @@
                                             <th>ID</th>
                                             <th>Status</th>
                                             <th>Name</th>
+                                            <th>Age</th>
+                                            <th>Gender</th>
+                                            <th>Email</th>
+                                            <th>Mobile</th>
                                             <th>City</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody>
+                                        <?php foreach ($data['patients'] as $patient) : ?>
+                                            <tr>
+                                                <td><?= $patient->id ?></td>
+                                                <td><?= $patient->status ?></td>
+                                                <td><?= $patient->lastname ?>, <?= $patient->firstname ?></td>
+                                                <td><?= $patient->age ?></td>
+                                                <td><?= $patient->gender ?></td>
+                                                <td><?= $patient->email ?></td>
+                                                <td><?= $patient->mobile ?></td>
+                                                <td><?= $patient->city ?></td>
+                                                <td>
+                                                    <a href="">Update</a>
+                                                    <a href="">Delete</a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

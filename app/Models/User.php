@@ -82,7 +82,7 @@ class User
                     users.lastname,
                     users.username,
                     users.email,
-                    roles.title as role_title
+                    roles.role as role_title
                 FROM users
                 LEFT JOIN roles
                 ON roles.id = users.role_id
@@ -103,7 +103,7 @@ class User
                     users.lastname,
                     users.username,
                     users.email,
-                    roles.title as role_title
+                    roles.role as role_title
                 FROM users
                 LEFT JOIN roles
                 ON roles.id = users.role_id
