@@ -114,6 +114,6 @@ class Database
     public function rowCount()
     {
         $this->execute();
-        return $this->db_query->rowCount();
+        return $this->dbQuery->rowCount();
     }
 }

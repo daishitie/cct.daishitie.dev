@@ -15,7 +15,10 @@ class Record
     public function index()
     {
         $this->db
-            ->query("SELECT * 
+            ->query("SELECT 
+                    patients.*,
+                    gender.gender,
+                    status.status
                 FROM patients
                 LEFT JOIN gender
                 ON patients.gender_id = gender.id
@@ -44,5 +47,62 @@ class Record
         $this->db->bind(':mobile', $data['mobile']);
         $this->db->bind(':city', $data['city']);
         return $this->db->execute();
+    }
+
+    public function showCity()
+    {
+        $this->db
+            ->query("SELECT
+                city
+                FROM patients
+                GROUP BY city
+                ORDER BY city
+            ");
+
+        return $this->db->findAll();
+    }
+
+    public function countCity($city, $status)
+    {
+        $this->db
+            ->query("SELECT *
+                FROM patients
+                LEFT JOIN status
+                ON patients.status_id = status.id
+                WHERE patients.city = :city
+                AND status.status = :status
+            ");
+
+        $this->db->bind(':city', $city);
+        $this->db->bind(':status', $status);
+        return $this->db->rowCount() ?? 0;
+    }
+
+    public function countStatus($status)
+    {
+        $this->db
+            ->query("SELECT *
+                FROM patients
+                LEFT JOIN status
+                ON patients.status_id = status.id
+                WHERE status.status = :status    
+            ");
+
+        $this->db->bind(':status', $status);
+        return $this->db->rowCount() ?? 0;
+    }
+
+    public function countGender($gender)
+    {
+        $this->db
+            ->query("SELECT *
+                FROM patients
+                LEFT JOIN gender
+                ON patients.gender_id = gender.id
+                WHERE gender.gender = :gender
+            ");
+
+        $this->db->bind(':gender', $gender);
+        return $this->db->rowCount() ?? 0;
     }
 }

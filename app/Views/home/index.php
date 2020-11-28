@@ -23,7 +23,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Confirmed</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['patients_confirmed']; ?></div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-user-check fa-2x text-gray-300"></i></div>
                                     </div>
@@ -37,7 +37,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Negative</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['patients_negative']; ?></div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-user-minus fa-2x text-gray-300"></i></div>
                                     </div>
@@ -51,7 +51,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Active Cases</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['patients_active']; ?></div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-user-lock fa-2x text-gray-300"></i></div>
                                     </div>
@@ -65,7 +65,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Recovered</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['patients_recovered']; ?></div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-user-clock fa-2x text-gray-300"></i></div>
                                     </div>
@@ -79,7 +79,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Deceased</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $data['patients_deceased']; ?></div>
                                         </div>
                                         <div class="col-auto"><i class="fas fa-skull fa-2x text-gray-300"></i></div>
                                     </div>
@@ -115,7 +115,7 @@
                                                     <th>Deceased</th>
                                                 </tr>
                                             </thead>
-                                            <tbody></tbody>
+                                            <tbody><?= $data['patients_city']; ?></tbody>
                                         </table>
                                     </div>
                                 </div>

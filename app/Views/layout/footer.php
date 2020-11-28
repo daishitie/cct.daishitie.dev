@@ -53,7 +53,7 @@
                 labels: ['Male', 'Female'],
 
                 datasets: [{
-                    data: ['1', '2'],
+                    data: [<?= $data['patients_male'] ?>, <?= $data['patients_female'] ?>],
                     backgroundColor: ['#575fcf', '#ef5777'],
                     hoverBackgroundColor: ['#3c40c6', '#f53b57'],
                     hoverBorderColor: "rgba(234, 236, 244, 1)",
