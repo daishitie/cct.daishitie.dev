@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2020 at 05:26 AM
+-- Generation Time: Nov 29, 2020 at 07:37 AM
 -- Server version: 8.0.22-0ubuntu0.20.04.2
 -- PHP Version: 7.4.3
 
@@ -109,13 +109,20 @@ INSERT INTO `status` (`id`, `status`) VALUES
 
 CREATE TABLE `users` (
   `id` int NOT NULL,
-  `role_id` int NOT NULL DEFAULT '0',
+  `role_id` int NOT NULL DEFAULT '1',
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `role_id`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES
+(1, 1, 'Emmanuel', 'See Te', 'default', 'default@gmail.com', '$2y$10$DsPmZQOfLEUmnoWLyhGRHu4oHl8PMCXAN7AGy0GPbU7NRs7FEfE5C');
 
 --
 -- Indexes for dumped tables
@@ -166,7 +173,7 @@ ALTER TABLE `gender`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -184,7 +191,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
