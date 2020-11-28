@@ -1,0 +1,16 @@
+{
+    "name": "covid19/main",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.2"
+    },
+    "config": {
+        "vendor-dir": "vendor",
+        "optimize-autoloader": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Covid\\App\\": "app/"
+        }
+    }
+}
