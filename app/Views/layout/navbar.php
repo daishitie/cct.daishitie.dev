@@ -3,13 +3,21 @@
         <i class="fa fa-bars"></i>
     </button>
 
+    <?php if (isset($data['user_session']['role'])) : ?>
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <label for="">
+                    Currently logged in as&nbsp;<b><?= $data['user_session']['role_title']; ?></b>
+                </label>
+            </div>
+        </form>
+    <?php endif; ?>
+
     <ul class="navbar-nav ml-auto">
         <?php if (!empty($data['user_session'])) : ?>
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="<?= config('app.url'); ?>" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="d-none d-lg-inline text-gray-600 small">
-                        Welcome back, <?= $data['user_session']['username'] ?>!
-                    </span>
+                    <span class="d-none d-lg-inline text-gray-600 small"><?= $data['user_session']['username'] ?></span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

@@ -77,6 +77,7 @@ class User
         $this->db
             ->query("SELECT 
                     users.id,
+                    users.role,
                     users.firstname,
                     users.lastname,
                     users.username,

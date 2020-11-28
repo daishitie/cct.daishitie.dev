@@ -33,7 +33,7 @@
                                     <?php endif; ?>
 
                                     <form class="user" action="<?= config('app.url'); ?>/register" method="post">
-                                        <input type="hidden" name="token" value="<?= $data['csrf_token']; ?>">
+                                        <input type="hidden" name="_token" value="<?= $data['csrf_token']; ?>">
                                         <div class="form-group row">
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control form-control-user" name="firstname" placeholder="First Name" value="<?= $data['firstname']; ?>">
