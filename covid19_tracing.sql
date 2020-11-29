@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2020 at 07:37 AM
+-- Generation Time: Nov 30, 2020 at 06:41 AM
 -- Server version: 8.0.22-0ubuntu0.20.04.2
 -- PHP Version: 7.4.3
 
@@ -21,6 +21,46 @@ SET time_zone = "+00:00";
 --
 -- Database: `covid19_tracing`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alerts`
+--
+
+CREATE TABLE `alerts` (
+  `id` int NOT NULL,
+  `type_id` int NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `in_dashboard` tinyint NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alert_types`
+--
+
+CREATE TABLE `alert_types` (
+  `id` int NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `text` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `alert_types`
+--
+
+INSERT INTO `alert_types` (`id`, `type`, `text`) VALUES
+(1, 'primary', 'white'),
+(2, 'success', 'white'),
+(3, 'info', 'white'),
+(4, 'warning', 'white'),
+(5, 'danger', 'white'),
+(6, 'light', 'black'),
+(7, 'dark', 'white');
 
 -- --------------------------------------------------------
 
@@ -118,15 +158,20 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `role_id`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES
-(1, 1, 'Emmanuel', 'See Te', 'default', 'default@gmail.com', '$2y$10$DsPmZQOfLEUmnoWLyhGRHu4oHl8PMCXAN7AGy0GPbU7NRs7FEfE5C');
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `alerts`
+--
+ALTER TABLE `alerts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `alert_types`
+--
+ALTER TABLE `alert_types`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `gender`
@@ -164,6 +209,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `alerts`
+--
+ALTER TABLE `alerts`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `alert_types`
+--
+ALTER TABLE `alert_types`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `gender`
 --
 ALTER TABLE `gender`
@@ -173,7 +230,7 @@ ALTER TABLE `gender`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -191,7 +248,7 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
