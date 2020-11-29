@@ -112,7 +112,7 @@
     <script>
         $(document).ready(function() {
             $('#alertsTable').DataTable({
-                "ordering": false,
+                "ordering": true,
                 "info": false
             });
         });

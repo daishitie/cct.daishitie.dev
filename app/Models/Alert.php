@@ -93,5 +93,8 @@ class Alert
 
     public function destroy($data)
     {
+        $this->db->query("DELETE FROM alerts WHERE id = :id");
+        $this->db->bind(':id', $data['alert_id']);
+        return $this->db->execute();
     }
 }

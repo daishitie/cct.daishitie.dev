@@ -9,10 +9,10 @@
                 <?php require_once $navbar; ?>
 
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800"><?= ucwords($data['title']); ?></h1>
+                    <h1 class="h3 mb-2 text-gray-800"><?= ucwords($data['title']); ?></h1>
 
                     <div class="row">
-                        <div class="col-xl-6 mb-4">
+                        <div class="col-xl-6 mb-2">
                             <div class="card shadow">
                                 <div class="card-body">
                                     <form action="<?= config('app.url'); ?>/alerts/edit/<?= $data['alert_id'] ?>" method="post">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-6 mb-4">
+                        <div class="col-xl-6 mb-2">
                             <?php if ($data['hassuccess']) : ?>
                                 <div class="alert alert-success text-left">
                                     <p class="m-0"><?= $data['success']; ?></p>

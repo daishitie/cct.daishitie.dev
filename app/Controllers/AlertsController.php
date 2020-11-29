@@ -7,7 +7,6 @@ use Covid\App\Libraries\Csrf;
 use Covid\App\Libraries\Session;
 use Covid\App\Models\Alert;
 use Covid\App\Models\User;
-use stdClass;
 
 class AlertsController extends Controller
 {
@@ -32,8 +31,6 @@ class AlertsController extends Controller
 
         if (Session::exists()) {
             $this->userSession = Session::getData($this->user);
-        } else {
-            $this->redirect();
         }
     }
 
@@ -49,6 +46,10 @@ class AlertsController extends Controller
 
     public function create($params = [])
     {
+        if (!Session::exists()) {
+            return $this->redirect('alerts');
+        }
+
         // Only authorize administrator roles
         if ($this->userSession['role_id'] == 1) {
             $this->redirect('alerts');
@@ -116,18 +117,18 @@ class AlertsController extends Controller
 
     public function edit($params = [])
     {
-        if ($this->userSession['role_id'] == 1) {
-            $this->redirect('alerts');
-        }
-
-        if (!$params) {
+        if (
+            !Session::exists()
+            || $this->userSession['role_id'] == 1
+            || !$params
+        ) {
             return $this->redirect('alerts');
         }
 
         $alertId = $params[2];
 
         if (!$this->alert->getById($alertId)) {
-            return $this->redirect('alerts');
+            return $this->redirect('404');
         }
 
         $alert = $this->alert->getById($alertId);
@@ -203,6 +204,64 @@ class AlertsController extends Controller
 
     public function destroy($params = [])
     {
-        return 0;
+        if (
+            !Session::exists()
+            || $this->userSession['role_id'] == 1
+            || !$params
+        ) {
+            return $this->redirect('alerts');
+        }
+
+        $alertId = $params[2];
+
+        if (!$this->alert->getById($alertId)) {
+            return $this->redirect('404');
+        }
+
+        $alert = $this->alert->getById($alertId);
+
+        $data = [
+            'title' => 'Delete Alert',
+            'csrf_token' => $this->csrfToken,
+            'user_session' => $this->userSession,
+            'alert_id' => $alertId,
+            'hassuccess' => false,
+            'success' => '',
+            'haserror' => false,
+            'errors' => [
+                'db' => '',
+            ]
+        ];
+
+        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            // Check account password of current logged in user
+            if (!$this->user->login($this->userSession['username'], $_POST['password_session'])) {
+                $data['haserror'] = true;
+                $data['errors']['db'] = 'Invalid credentials.';
+
+                return $this->view('alerts/destroy', $data);
+            }
+
+            if (!$this->checkErrors($data)) {
+                if ($this->alert->destroy($data)) {
+                    $data['hassuccess'] = true;
+                    $data['success'] = 'Alert has been deleted!';
+                } else {
+                    $data['haserror'] = true;
+                    $data['errors']['db'] = 'Something went wrong';
+                }
+            } else {
+                // Check errors
+                foreach ($data['errors'] as $value) {
+                    if (!empty($value)) {
+                        $data['haserror'] = true;
+                    }
+                }
+            }
+        }
+
+        return $this->view('alerts/destroy', $data);
     }
 }

@@ -9,9 +9,9 @@
                 <?php require_once $navbar; ?>
 
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800"><?= ucwords($data['title']); ?></h1>
+                    <h1 class="h3 mb-2 text-gray-800"><?= ucwords($data['title']); ?></h1>
 
-                    <div class="card shadow mb-4">
+                    <div class="card shadow mb-2">
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-sm table-hover table-bordered" id="recordsTable" width="100%" cellspacing="0">

@@ -48,8 +48,8 @@
             </li>
         <?php else : ?>
             <li class="nav-item<?= $data['title'] == 'Alerts' ? ' active' : ''; ?>">
-                <a class="nav-link" href="<?= config('app.url'); ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <a class="nav-link" href="<?= config('app.url'); ?>/alerts">
+                    <i class="fas fa-fw fa-bell"></i>
                     <span>Alerts</span>
                 </a>
             </li>

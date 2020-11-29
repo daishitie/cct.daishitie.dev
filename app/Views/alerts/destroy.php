@@ -16,20 +16,13 @@
                             <div class="col-xl-6 mb-2">
                                 <div class="card shadow">
                                     <div class="card-body">
-                                        <form action="<?= config('app.url'); ?>/records/destroy/<?= $data['patient_id']; ?>" method="post">
+                                        <form action="<?= config('app.url'); ?>/alerts/destroy/<?= $data['alert_id']; ?>" method="post">
                                             <input type="hidden" name="_token" value="<?= $data['csrf_token']; ?>">
 
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Patient ID</label>
+                                                <label class="col-sm-3 col-form-label">Alert ID</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" readonly class="form-control-plaintext" value="<?= $data['patient_id']; ?>">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Patient Name</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" readonly class="form-control-plaintext" value="<?= $data['patient_name']; ?>">
+                                                    <input type="text" readonly class="form-control-plaintext" value="<?= $data['alert_id']; ?>">
                                                 </div>
                                             </div>
 
@@ -43,7 +36,7 @@
                                             </div>
 
                                             <div class="form-group row m-0">
-                                                <button type="submit" class="col-sm-12 form-control btn btn-danger btn-user btn-block">Confirm Record Deletion</button>
+                                                <button type="submit" class="col-sm-12 form-control btn btn-danger btn-user btn-block">Confirm Alert Deletion</button>
                                             </div>
                                         </form>
                                     </div>

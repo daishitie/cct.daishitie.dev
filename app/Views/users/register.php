@@ -14,7 +14,7 @@
                             <div class="col-lg-8">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">
+                                        <h1 class="h4 text-gray-900 mb-2">
                                             <strong><?= config('app.name'); ?></strong><br />
                                             Create an Account!
                                         </h1>
