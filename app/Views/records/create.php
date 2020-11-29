@@ -1,4 +1,4 @@
-<body ud="page-top">
+<body id="page-top">
     <div id="wrapper">
 
         <?php require_once $sidebar; ?>
@@ -23,10 +23,10 @@
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="status" id="status">
                                                     <option value="" disabled selected>Status</option>
-                                                    <option value="1">Negative</option>
-                                                    <option value="2">Positive</option>
-                                                    <option value="3">Recovered</option>
-                                                    <option value="4">Deceased</option>
+                                                    <option value="1" <?php if ($data['status'] == 1) echo 'selected'; ?>>Negative</option>
+                                                    <option value="2" <?php if ($data['status'] == 2) echo 'selected'; ?>>Positive</option>
+                                                    <option value="3" <?php if ($data['status'] == 3) echo 'selected'; ?>>Recovered</option>
+                                                    <option value="4" <?php if ($data['status'] == 4) echo 'selected'; ?>>Deceased</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -34,49 +34,49 @@
                                         <div class="form-group row">
                                             <label for="firstname" class="col-sm-3 col-form-label">First name *</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First name">
+                                                <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First name" value="<?= $data['firstname']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="middlename" class="col-sm-3 col-form-label">Middle name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="middlename" id="middlename" placeholder="Middle name">
+                                                <input type="text" class="form-control" name="middlename" id="middlename" placeholder="Middle name" value="<?= $data['middlename']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="lastname" class="col-sm-3 col-form-label">Last name *</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last name">
+                                                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last name" value="<?= $data['lastname']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="email" class="col-sm-3 col-form-label">Email</label>
                                             <div class="col-sm-9">
-                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email address">
+                                                <input type="email" class="form-control" name="email" id="email" placeholder="Email address" value="<?= $data['email']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="mobile" class="col-sm-3 col-form-label">Mobile *</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile">
+                                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile" value="<?= $data['mobile']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="age" class="col-sm-3 col-form-label">Age *</label>
                                             <div class="col-sm-9">
-                                                <input type="number" class="form-control" name="age" id="age" placeholder="Age">
+                                                <input type="number" class="form-control" name="age" id="age" placeholder="Age" value="<?= $data['age']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="city" class="col-sm-3 col-form-label">City *</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="city" id="city" placeholder="City">
+                                                <input type="text" class="form-control" name="city" id="city" placeholder="City" value="<?= $data['city']; ?>">
                                             </div>
                                         </div>
 
@@ -85,9 +85,9 @@
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="gender" id="gender">
                                                     <option value="" disabled selected>Gender</option>
-                                                    <option value="1">Male</option>
-                                                    <option value="2">Female</option>
-                                                    <option value="3">Other</option>
+                                                    <option value="1" <?php if ($data['gender'] == 1) echo 'selected'; ?>>Male</option>
+                                                    <option value="2" <?php if ($data['gender'] == 2) echo 'selected'; ?>>Female</option>
+                                                    <option value="3" <?php if ($data['gender'] == 3) echo 'selected'; ?>>Other</option>
                                                 </select>
                                             </div>
                                         </div>

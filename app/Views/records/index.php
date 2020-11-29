@@ -1,4 +1,4 @@
-<body ud="page-top">
+<body id="page-top">
     <div id="wrapper">
 
         <?php require_once $sidebar; ?>
@@ -14,7 +14,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-bordered" id="recordsTable" width="100%" cellspacing="0">
+                                <table class="table table-sm table-hover table-bordered" id="recordsTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -83,9 +83,19 @@
                                                 </td>
                                                 <td><?= $patient->city ?></td>
                                                 <?php if (isset($data['user_session']['role_id']) && intval($data['user_session']['role_id']) !== 1) : ?>
-                                                    <td>
-                                                        <a href="">Update</a>
-                                                        <a href="">Delete</a>
+                                                    <td class="m-auto">
+                                                        <a href="<?= config('app.url'); ?>/records/edit/<?= $patient->id ?>" class=" btn btn-primary btn-icon-split btn-sm">
+                                                            <span class="icon text-white-50">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                            </span>
+                                                            <span class="text">Edit</span>
+                                                        </a>
+                                                        <a href="<?= config('app.url'); ?>/records/destroy/<?= $patient->id ?>" class=" btn btn-danger btn-icon-split btn-sm">
+                                                            <span class="icon text-white-50">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                            </span>
+                                                            <span class="text">Delete</span>
+                                                        </a>
                                                     </td>
                                                 <?php endif; ?>
                                             </tr>

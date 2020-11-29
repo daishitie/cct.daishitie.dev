@@ -107,6 +107,17 @@
         });
     </script>
 
+<?php elseif (strtolower($data['title']) == 'alerts') : ?>
+
+    <script>
+        $(document).ready(function() {
+            $('#alertsTable').DataTable({
+                "ordering": false,
+                "info": false
+            });
+        });
+    </script>
+
 <?php endif; ?>
 
 </html>

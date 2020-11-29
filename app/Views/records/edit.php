@@ -15,26 +15,25 @@
                         <div class="col-xl-6 mb-4">
                             <div class="card shadow">
                                 <div class="card-body">
-                                    <form action="<?= config('app.url'); ?>/users/edit/<?= $data['user_id']; ?>" method="post">
+                                    <form action="<?= config('app.url'); ?>/records/edit/<?= $data['patient_id']; ?>" method="post">
                                         <input type="hidden" name="_token" value="<?= $data['csrf_token']; ?>">
 
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Account ID</label>
+                                            <label class="col-sm-3 col-form-label">Patient ID</label>
                                             <div class="col-sm-9">
-                                                <input type="text" readonly class="form-control-plaintext" value="<?= $data['user_id']; ?>">
+                                                <input type="text" readonly class="form-control-plaintext" value="<?= $data['patient_id']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="role" class="col-sm-3 col-form-label">Role</label>
+                                            <label for="status" class="col-sm-3 col-form-label">Status</label>
                                             <div class="col-sm-9">
-                                                <select class="form-control" name="role" id="role">
-                                                    <option value="1" <?php if ($data['role'] == 1) {
-                                                                            echo ' selected';
-                                                                        } ?>>Regular User</option>
-                                                    <option value="2" <?php if ($data['role'] == 2) {
-                                                                            echo ' selected';
-                                                                        } ?>>Administrator</option>
+                                                <select class="form-control" name="status" id="status">
+                                                    <option value="" disabled selected>Status</option>
+                                                    <option value="1" <?php if ($data['status'] == 1) echo 'selected'; ?>>Negative</option>
+                                                    <option value="2" <?php if ($data['status'] == 2) echo 'selected'; ?>>Positive</option>
+                                                    <option value="3" <?php if ($data['status'] == 3) echo 'selected'; ?>>Recovered</option>
+                                                    <option value="4" <?php if ($data['status'] == 4) echo 'selected'; ?>>Deceased</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -43,6 +42,13 @@
                                             <label for="firstname" class="col-sm-3 col-form-label">First name</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First name" value="<?= $data['firstname']; ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="middlename" class="col-sm-3 col-form-label">Middle name</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="middlename" id="middlename" placeholder="Middle name" value="<?= $data['middlename']; ?>">
                                             </div>
                                         </div>
 
@@ -61,19 +67,35 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="username" class="col-sm-3 col-form-label">Username</label>
+                                            <label for="mobile" class="col-sm-3 col-form-label">Mobile</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?= $data['username']; ?>">
+                                                <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Mobile" value="<?= $data['mobile']; ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="password" class="col-sm-3 col-form-label">Password</label>
+                                            <label for="age" class="col-sm-3 col-form-label">Age</label>
                                             <div class="col-sm-9">
-                                                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                                                <small id="passwordHelpInline" class="text-muted">
-                                                    Leave empty to not change the password.
-                                                </small>
+                                                <input type="number" class="form-control" name="age" id="age" placeholder="Age" value="<?= $data['age']; ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="city" class="col-sm-3 col-form-label">City</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" name="city" id="city" placeholder="City" value="<?= $data['city']; ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="gender" class="col-sm-3 col-form-label">Gender</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control" name="gender" id="gender">
+                                                    <option value="" disabled selected>Gender</option>
+                                                    <option value="1" <?php if ($data['gender'] == 1) echo 'selected'; ?>>Male</option>
+                                                    <option value="2" <?php if ($data['gender'] == 2) echo 'selected'; ?>>Female</option>
+                                                    <option value="3" <?php if ($data['gender'] == 3) echo 'selected'; ?>>Other</option>
+                                                </select>
                                             </div>
                                         </div>
 

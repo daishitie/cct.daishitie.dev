@@ -48,6 +48,43 @@ class Record
         return $this->db->execute();
     }
 
+    public function update($data)
+    {
+        $this->db
+            ->query("UPDATE patients
+                SET
+                    status_id = :status,
+                    firstname = :firstname,
+                    middlename = :middlename,
+                    lastname = :lastname,
+                    age = :age,
+                    gender_id = :gender,
+                    email = :email,
+                    mobile = :mobile,
+                    city = :city
+                WHERE id = :id
+            ");
+
+        $this->db->bind(':id', $data['patient_id']);
+        $this->db->bind(':status', $data['status']);
+        $this->db->bind(':firstname', $data['firstname']);
+        $this->db->bind(':middlename', $data['middlename']);
+        $this->db->bind(':lastname', $data['lastname']);
+        $this->db->bind(':age', $data['age']);
+        $this->db->bind(':gender', $data['gender']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':mobile', $data['mobile']);
+        $this->db->bind(':city', $data['city']);
+        return $this->db->execute();
+    }
+
+    public function destroy($data)
+    {
+        $this->db->query("DELETE FROM patients WHERE id = :id");
+        $this->db->bind(':id', $data['patient_id']);
+        return $this->db->execute();
+    }
+
     public function showCity()
     {
         $this->db
@@ -89,5 +126,24 @@ class Record
 
         $this->db->bind(':gender', $gender);
         return $this->db->rowCount() ?? 0;
+    }
+
+    public function getById($id)
+    {
+        $this->db
+            ->query("SELECT 
+                    patients.*,
+                    gender.gender,
+                    status.status
+                FROM patients
+                LEFT JOIN gender
+                ON patients.gender_id = gender.id
+                LEFT JOIN status
+                ON patients.status_id = status.id
+                WHERE patients.id = :id
+            ");
+
+        $this->db->bind(':id', $id);
+        return $this->db->find() ?? false;
     }
 }

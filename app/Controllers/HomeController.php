@@ -5,6 +5,7 @@ namespace Covid\App\Controllers;
 use Covid\App\Libraries\Controller;
 use Covid\App\Libraries\Csrf;
 use Covid\App\Libraries\Session;
+use Covid\App\Models\Alert;
 use Covid\App\Models\Gender;
 use Covid\App\Models\Record;
 use Covid\App\Models\Status;
@@ -20,6 +21,8 @@ class HomeController extends Controller
     private $status;
     /** @var Gender */
     private $gender;
+    /** @var Alert */
+    private $alert;
     /** @var string */
     private $csrfToken;
     /** @var int */
@@ -34,6 +37,7 @@ class HomeController extends Controller
         $this->record = $this->model('Record');
         $this->status = $this->model('Status');
         $this->gender = $this->model('Gender');
+        $this->alert = $this->model('Alert');
         $this->csrfToken = Session::get('csrf_token');
         $this->csrfTokenExpiry = Session::get('csrf_token-expiry');
 
@@ -77,6 +81,7 @@ class HomeController extends Controller
             'patients_deceased' => $this->status->count('deceased'),
             'patients_male' => $this->gender->count('male'),
             'patients_female' => $this->gender->count('female'),
+            'alerts' => $this->alert->getDashboard(),
         ]);
     }
 }

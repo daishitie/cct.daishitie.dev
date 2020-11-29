@@ -50,6 +50,51 @@ class User
         return $this->db->execute();
     }
 
+    public function update($data)
+    {
+        if (empty($data['password'])) {
+            $this->db
+                ->query("UPDATE users
+                SET
+                    role_id = :role,
+                    firstname = :firstname,
+                    lastname = :lastname,
+                    username = :username,
+                    email = :email
+                WHERE id = :id
+            ");
+        } else {
+            $this->db
+                ->query("UPDATE users
+                SET
+                    role_id = :role,
+                    firstname = :firstname,
+                    lastname = :lastname,
+                    username = :username,
+                    email = :email,
+                    password = :password
+                WHERE id = :id
+            ");
+
+            $this->db->bind(':password', password_hash($data['password'], PASSWORD_DEFAULT));
+        }
+
+        $this->db->bind(':id', $data['user_id']);
+        $this->db->bind(':role', $data['role']);
+        $this->db->bind(':firstname', $data['firstname']);
+        $this->db->bind(':lastname', $data['lastname']);
+        $this->db->bind(':username', $data['username']);
+        $this->db->bind(':email', $data['email']);
+        return $this->db->execute();
+    }
+
+    public function destroy($data)
+    {
+        $this->db->query("DELETE FROM users WHERE id = :id");
+        $this->db->bind(':id', $data['user_id']);
+        return $this->db->execute();
+    }
+
     public function findUsername($username)
     {
         $this->db->query("SELECT *

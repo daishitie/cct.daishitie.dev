@@ -9,15 +9,24 @@
                 <?php require_once $navbar; ?>
 
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800"><?= ucwords($data['title']); ?></h1>
+                    <h1 class="h3 mb-2 text-gray-800"><?= ucwords($data['title']); ?></h1>
 
                     <div class="row">
-                        <!-- <div class="col-xl-12">
-                            <div class="alert alert-success">Lockdown has been lifted in <strong>Saitama</strong>.</div>
-                            <div class="alert alert-warning">A lockdown will be start in <strong>Nagoya</strong> at <strong>8PM JST</strong>.</div>
-                        </div> -->
+                        <?php foreach ($data['alerts'] as $alert) : ?>
+                            <?php if ($alert) : ?>
 
-                        <div class="col-xl-12 col-md-6 mb-4">
+                                <div class="col-xl-12">
+                                    <div class="card bg-<?= $alert->type; ?> text-<?= $alert->text; ?> shadow mb-2">
+                                        <div class="card-body">
+                                            <?= $alert->message; ?>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+
+                        <div class="col-xl-12 col-md-6 mb-2">
                             <div class="card border-bottom-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -31,7 +40,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="col-xl-3 col-md-6 mb-2">
                             <div class="card border-bottom-dark shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -45,7 +54,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-4 mb-4">
+                        <div class="col-xl-3 col-md-4 mb-2">
                             <div class="card border-bottom-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -59,7 +68,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-4 mb-4">
+                        <div class="col-xl-3 col-md-4 mb-2">
                             <div class="card border-bottom-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -73,7 +82,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-md-4 mb-4">
+                        <div class="col-xl-3 col-md-4 mb-2">
                             <div class="card border-bottom-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -88,7 +97,7 @@
                         </div>
 
                         <div class="col-xl-3 col-md-3">
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-2">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Case by Gender</h6>
                                 </div>
@@ -99,7 +108,7 @@
                         </div>
 
                         <div class="col-xl-9 col-md-9">
-                            <div class="card shadow mb-4">
+                            <div class="card shadow mb-2">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Case by City</h6>
                                 </div>

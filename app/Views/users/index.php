@@ -1,4 +1,4 @@
-<body ud="page-top">
+<body id="page-top">
     <div id="wrapper">
 
         <?php require_once $sidebar; ?>
@@ -34,10 +34,18 @@
                                                 <td><?= $account->username ?></td>
                                                 <td><?= $account->email ?></td>
                                                 <td class="m-auto">
-                                                    <div class="btn-group">
-                                                        <a href="<?= config('app.url'); ?>/users/edit/<?= $account->id ?>" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i> Edit</a>
-                                                        <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
-                                                    </div>
+                                                    <a href="<?= config('app.url'); ?>/users/edit/<?= $account->id ?>" class="btn btn-primary btn-icon-split btn-sm">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </span>
+                                                        <span class="text">Edit</span>
+                                                    </a>
+                                                    <a href="<?= config('app.url'); ?>/users/destroy/<?= $account->id ?>" class="btn btn-danger btn-icon-split btn-sm">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </span>
+                                                        <span class="text">Delete</span>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

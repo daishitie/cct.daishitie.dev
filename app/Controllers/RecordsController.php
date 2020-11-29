@@ -129,4 +129,172 @@ class RecordsController extends Controller
 
         $this->view('records/create', $data);
     }
+
+    public function edit($params = [])
+    {
+        if ($this->userSession['role_id'] == 1) {
+            $this->redirect('records');
+        }
+
+        if (!$params) {
+            return $this->redirect('records');
+        }
+
+        $patientId = $params[2];
+
+        if (!$this->record->getById($patientId)) {
+            return $this->redirect('records');
+        }
+
+        $patient = $this->record->getById($patientId);
+
+        // Initialize default data.
+        $data = [
+            'title' => 'Edit Record',
+            'csrf_token' => $this->csrfToken,
+            'user_session' => $this->userSession,
+            'patient_id' => $patient->id,
+            'status' => $patient->status_id,
+            'firstname' => $patient->firstname,
+            'middlename' => $patient->middlename,
+            'lastname' => $patient->lastname,
+            'email' => $patient->email,
+            'mobile' => $patient->mobile,
+            'age' => $patient->age,
+            'city' => $patient->city,
+            'gender' => $patient->gender_id,
+            'hassuccess' => false,
+            'success' => '',
+            'haserror' => false,
+            'errors' => [
+                'status' => '',
+                'firstname' => '',
+                'middlename' => '',
+                'lastname' => '',
+                'email' => '',
+                'mobile' => '',
+                'age' => '',
+                'city' => '',
+                'gender' => '',
+            ],
+        ];
+
+        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            // Check account password of current logged in user
+            if (!$this->user->login($this->userSession['username'], $_POST['password_session'])) {
+                $data['haserror'] = true;
+                $data['errors']['db'] = 'Invalid credentials.';
+
+                return $this->view('records/edit', $data);
+            }
+
+            $except = ['middlename', 'email', 'hassuccess', 'success', 'haserror'];
+
+            foreach ($data as $key => $value) {
+                if (!is_array($data[$key])) {
+                    $data[$key] = $_POST[$key] ?? $data[$key];
+
+                    if (empty($data[$key]) && !in_array($key, $except)) {
+                        $data['errors'][$key] = ucwords($key) . ' is required.';
+                    }
+                }
+            }
+
+            // Status
+            if (!empty($data['status']) && ($data['status'] < 1 || $data['status'] > 4)) {
+                $data['errors']['status'] = 'Status must be valid.';
+            }
+
+            // Gender
+            if (!empty($data['gender']) && ($data['gender'] < 1 || $data['gender'] > 3)) {
+                $data['errors']['gender'] = 'Gender must be valid.';
+            }
+
+            // Check if all errors are empty.
+            if (!$this->checkErrors($data)) {
+                if ($this->record->update($data)) {
+                    $data['hassuccess'] = true;
+                    $data['success'] = 'Record has been updated!';
+                } else {
+                    $data['haserror'] = true;
+                    $data['errors']['db'] = 'Internal server error.';
+                }
+            } else {
+                // Check errors
+                foreach ($data['errors'] as $value) {
+                    if (!empty($value)) {
+                        $data['haserror'] = true;
+                    }
+                }
+            }
+        }
+
+        $this->view('records/edit', $data);
+    }
+
+    public function destroy($params = [])
+    {
+        if ($this->userSession['role_id'] == 1) {
+            $this->redirect();
+        }
+
+        if (!$params) {
+            return $this->redirect('records');
+        }
+
+        $patientId = $params[2];
+
+        if (!$this->record->getById($patientId)) {
+            return $this->redirect('records');
+        }
+
+        $patient = $this->record->getById($patientId);
+
+        $data = [
+            'title' => 'Delete Record',
+            'csrf_token' => $this->csrfToken,
+            'user_session' => $this->userSession,
+            'patient_id' => $patientId,
+            'patient_name' => "{$patient->lastname}, {$patient->firstname} {$patient->middlename}",
+            'hassuccess' => false,
+            'success' => '',
+            'haserror' => false,
+            'errors' => [
+                'db' => '',
+            ],
+        ];
+
+        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            // Check account password of current logged in user
+            if (!$this->user->login($this->userSession['username'], $_POST['password_session'])) {
+                $data['haserror'] = true;
+                $data['errors']['db'] = 'Invalid credentials.';
+
+                return $this->view('records/destroy', $data);
+            }
+
+            if (!$this->checkErrors($data)) {
+                if ($this->record->destroy($data)) {
+                    $data['hassuccess'] = true;
+                    $data['success'] = 'Record has been deleted!';
+                } else {
+                    $data['haserror'] = true;
+                    $data['errors']['db'] = 'Something went wrong';
+                }
+            } else {
+                // Check errors
+                foreach ($data['errors'] as $value) {
+                    if (!empty($value)) {
+                        $data['haserror'] = true;
+                    }
+                }
+            }
+        }
+
+        return $this->view('records/destroy', $data);
+    }
 }
