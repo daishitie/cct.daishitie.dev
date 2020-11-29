@@ -5,7 +5,9 @@ namespace Covid\App\Controllers;
 use Covid\App\Libraries\Controller;
 use Covid\App\Libraries\Csrf;
 use Covid\App\Libraries\Session;
+use Covid\App\Models\Gender;
 use Covid\App\Models\Record;
+use Covid\App\Models\Status;
 use Covid\App\Models\User;
 
 class HomeController extends Controller
@@ -14,6 +16,10 @@ class HomeController extends Controller
     private $user;
     /** @var Record */
     private $record;
+    /** @var Status */
+    private $status;
+    /** @var Gender */
+    private $gender;
     /** @var string */
     private $csrfToken;
     /** @var int */
@@ -26,6 +32,8 @@ class HomeController extends Controller
         Csrf::make();
         $this->user = $this->model('User');
         $this->record = $this->model('Record');
+        $this->status = $this->model('Status');
+        $this->gender = $this->model('Gender');
         $this->csrfToken = Session::get('csrf_token');
         $this->csrfTokenExpiry = Session::get('csrf_token-expiry');
 
@@ -37,6 +45,7 @@ class HomeController extends Controller
             http_response_code(404);
             $this->view('errors/404', [
                 'title' => '404',
+                'user_session' => $this->userSession
             ]);
         }
     }
@@ -61,13 +70,13 @@ class HomeController extends Controller
             'csrf_token' => $this->csrfToken,
             'user_session' => $this->userSession,
             'patients_city' => $patientsCity,
-            'patients_confirmed' => number_format(99999999),
-            'patients_negative' => number_format($this->record->countStatus('negative')),
-            'patients_active' => number_format(0),
-            'patients_recovered' => number_format(0),
-            'patients_deceased' => number_format(0),
-            'patients_male' => $this->record->countGender('male'),
-            'patients_female' => $this->record->countGender('female'),
+            'patients_confirmed' => $this->status->count(),
+            'patients_negative' => $this->status->count('negative'),
+            'patients_active' => $this->status->count('positive'),
+            'patients_recovered' => $this->status->count('recovered'),
+            'patients_deceased' => $this->status->count('deceased'),
+            'patients_male' => $this->gender->count('male'),
+            'patients_female' => $this->gender->count('female'),
         ]);
     }
 }

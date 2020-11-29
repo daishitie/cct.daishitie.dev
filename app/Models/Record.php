@@ -3,7 +3,6 @@
 namespace Covid\App\Models;
 
 use Covid\App\Libraries\Database;
-use Covid\App\Libraries\Session;
 
 class Record
 {
@@ -74,20 +73,6 @@ class Record
             ");
 
         $this->db->bind(':city', $city);
-        $this->db->bind(':status', $status);
-        return $this->db->rowCount() ?? 0;
-    }
-
-    public function countStatus($status)
-    {
-        $this->db
-            ->query("SELECT *
-                FROM patients
-                LEFT JOIN status
-                ON patients.status_id = status.id
-                WHERE status.status = :status    
-            ");
-
         $this->db->bind(':status', $status);
         return $this->db->rowCount() ?? 0;
     }

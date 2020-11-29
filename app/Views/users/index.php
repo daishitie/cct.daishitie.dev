@@ -14,7 +14,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover table-bordered" id="accountsTable" width="100%" cellspacing="0">
+                                <table class="table table-sm table-hover table-bordered" id="accountsTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -22,7 +22,7 @@
                                             <th>Name</th>
                                             <th>Username</th>
                                             <th>Email</th>
-                                            <th>Action</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -33,9 +33,11 @@
                                                 <td><?= $account->lastname ?>, <?= $account->firstname ?></td>
                                                 <td><?= $account->username ?></td>
                                                 <td><?= $account->email ?></td>
-                                                <td>
-                                                    <a href="">Update</a>
-                                                    <a href="">Delete</a>
+                                                <td class="m-auto">
+                                                    <div class="btn-group">
+                                                        <a href="<?= config('app.url'); ?>/users/edit/<?= $account->id ?>" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                                        <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

@@ -12,10 +12,10 @@
                     <h1 class="h3 mb-4 text-gray-800"><?= ucwords($data['title']); ?></h1>
 
                     <div class="row">
-                        <div class="col-xl-12">
+                        <!-- <div class="col-xl-12">
                             <div class="alert alert-success">Lockdown has been lifted in <strong>Saitama</strong>.</div>
                             <div class="alert alert-warning">A lockdown will be start in <strong>Nagoya</strong> at <strong>8PM JST</strong>.</div>
-                        </div>
+                        </div> -->
 
                         <div class="col-xl-12 col-md-6 mb-4">
                             <div class="card border-bottom-primary shadow h-100 py-2">
